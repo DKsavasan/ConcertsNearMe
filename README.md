@@ -13,7 +13,7 @@ Teammates:
 * Thomas Lee
 * Doruk Savasan
 
-Technology
-* Frontend: React -> HTML, CSS, JavaScript
-* Backend: Python
-* Database: Firebase
+Frontend: React -> HTML, CSS, JavaScript
+Backend: Python
+Database: Firebase
+
