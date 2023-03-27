@@ -15,6 +15,7 @@ firebase_admin.initialize_app(cred, {
 food = {}
 food["burger"]=["100g", "5-star"]
 
+
 #push and get
 ref = db.reference("/")
 ref.set({"food":food})
