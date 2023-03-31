@@ -5,6 +5,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    background-color: orange;
   }
   
 h1 {
@@ -15,7 +16,7 @@ h1 {
 button {
     padding: 16px 32px;
     font-size: 24px;
-    background-color: #4285F4;
+    background-color: #f44242;
     color: #fff;
     border-radius: 8px;
     cursor: pointer;
@@ -24,7 +25,7 @@ button {
 button.google_sign-in {
     padding: 16px 32px;
     font-size: 24px;
-    background-color: #4285F4;
+    background-color: #f44242;
     color: #fff;
     border-radius: 8px;
     cursor: pointer;

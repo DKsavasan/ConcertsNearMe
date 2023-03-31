@@ -1,10 +1,26 @@
+body{
+  background-color:orange;
+}
+
+.location-button{
+  width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: red;
+}
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
-  
+   
   .form {
     display: flex;
     flex-direction: column;
@@ -15,6 +31,7 @@
     border: 2px solid black;
     border-radius: 10px;
     padding: 20px;
+    background-color: gray;
   }
   
   .input-box {
@@ -25,6 +42,7 @@
     border: 1px solid gray;
     padding: 10px;
     font-size: 16px;
+    background-color: white;
   }
   
   .submit-button {
@@ -32,10 +50,10 @@
     height: 50px;
     border-radius: 5px;
     border: none;
-    background-color: blue;
     color: white;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+    background-color: red;
   }
   
