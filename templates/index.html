@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <title>Find What You Like</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
           <input type="text" class="input-box" placeholder="Maximum Distance from Location">
           <button type="submit" class="submit-button">Submit</button>
         </form>
-      </div>
-  <script src="./index.js"></script>
+    </div>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 </html>
