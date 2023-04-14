@@ -20,5 +20,5 @@ Database: Firebase
 
 How to run the web: 
 1. Open terminal
-2. type `cd {where you store your folder for this project`
+2. type `cd {where you store your folder for this project}`
 3. type `python app.py` or `python3 app.py`
