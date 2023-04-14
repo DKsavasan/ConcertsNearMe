@@ -26,15 +26,15 @@ const findMyState = () => {
         const longitude = position.coords.longitude;
         const geoApiURL = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en'
 
-        let zipcode;
+        let location;
 
         fetch(geoApiURL)
             .then(res => res.json())
             .then(data => {
-                zipcode = data.postcode;
+                location = data;
             })
             .then(() => {
-                console.log(zipcode);
+                console.log(location);
             });
 
     }

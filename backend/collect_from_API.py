@@ -3,7 +3,7 @@ import ticketpy
 tm_client = ticketpy.ApiClient('1m3jpoAZ65vufnoIEnQ47V5DjEoUGggG')
 
 pages = tm_client.events.find(
-    classification_name=
+    classification_name='Hip-Hop',
     state_code='MA',
     start_date_time='2023-05-19T00:00:00Z',
     end_date_time='2023-05-21T20:00:00Z'
@@ -11,5 +11,5 @@ pages = tm_client.events.find(
 
 for page in pages:
     for event in page:
-        print(event)
+        print(type(event))
         
