@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
 import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
 
 
 // Your web app's Firebase configuration
@@ -22,6 +23,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app); 
 const provider = new GoogleAuthProvider(app);
+const database = getDatabase(app);
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getRedirectResult(auth)
         .then((result) => {
-
             // This gives you a Google Access Token. You can use it to access Google APIs.
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const token = credential.accessToken;
@@ -41,16 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
             // IdP data available using getAdditionalUserInfo(result)
             // ...
             window.location.href = "index.html";
-            alert("succesful log in");
+            alert("succesful log in"); 
         })
         .catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
             const errorMessage = error.message;
             // The email of the user's account used.
-            const email = error.customData.email;
+            const email = error.email;
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
             // ...
-        });
+        });         
 });
