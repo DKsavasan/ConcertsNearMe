@@ -16,12 +16,12 @@ const firebaseConfig = {
     messagingSenderId: "177441354376",
     appId: "1:177441354376:web:3c6c8c736ff51c3f5b653d",
     measurementId: "G-BGMSXG6BLS"
-  };
-  
+};
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const auth = getAuth(app); 
+const auth = getAuth(app);
 const provider = new GoogleAuthProvider(app);
 const database = getDatabase(app);
 
@@ -29,7 +29,7 @@ const database = getDatabase(app);
 document.addEventListener("DOMContentLoaded", () => {
     const loginButton = document.getElementById("login");
     loginButton.addEventListener("click", () => {
-      signInWithRedirect(auth, provider);
+        signInWithRedirect(auth, provider);
     });
 
     getRedirectResult(auth)
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const user = result.user;
             // IdP data available using getAdditionalUserInfo(result)
             // ...
-            window.location.href = "index.html";
-            alert("succesful log in"); 
+            window.location.href = "/index";
+            alert("succesful log in");
         })
         .catch((error) => {
             // Handle Errors here.
@@ -52,6 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const email = error.email;
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-        });         
+            // alert("error!!!");
+            console.log(errorCode)
+            console.log(errorMessage)
+            console.log(email)
+            console.log(credential)
+        });
 });
