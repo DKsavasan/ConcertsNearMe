@@ -12,20 +12,31 @@ const findMyState = () => {
     const success = (position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        const geoApiURL = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en'
-
-        let location;
+        const geoApiURL = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
 
         fetch(geoApiURL)
             .then(res => res.json())
             .then(data => {
-                location = data;
-            })
-            .then(() => {
-                console.log(location);
-            });
+                const location = data;
+                const postData = {
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                };
 
+                fetch('/api/location', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(postData)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    });
+            });
     }
+
 
     const error = () => {
         status.textContent = "Unable";

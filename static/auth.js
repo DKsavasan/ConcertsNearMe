@@ -39,23 +39,33 @@ document.addEventListener("DOMContentLoaded", () => {
             const token = credential.accessToken;
             // The signed-in user info.
             const user = result.user;
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
+
+            // Add the fetch() function to send the email to the backend
+            fetch('/user/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: user.email, name: user.displayName })
+            })
+
+            // Redirect to the index page
             window.location.href = "/index";
             alert("succesful log in");
         })
-        .catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // alert("error!!!");
-            console.log(errorCode)
-            console.log(errorMessage)
-            console.log(email)
-            console.log(credential)
-        });
+
+    .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // alert("error!!!");
+        console.log(errorCode)
+        console.log(errorMessage)
+        console.log(email)
+        console.log(credential)
+    });
 });
