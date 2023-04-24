@@ -23,6 +23,32 @@
     </form>
   </div>
 
+  <h1>Search Results</h1>
+  <table border="1">
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Start Date</th>
+              <th>Start Time</th>
+              <th>Min Price</th>
+              <th>Max Price</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for event in data %}
+          <tr>
+              <td>{{ event.name }}</td>
+              <td>{{ event.status }}</td>
+              <td>{{ event.start_date }}</td>
+              <td>{{ event.start_time }}</td>
+              <td>{{ event.min_price }}</td>
+              <td>{{ event.max_price }}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+
   <script src="{{ url_for('static', filename='index.js') }}"></script>
 
 </body>
