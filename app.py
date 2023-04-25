@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, g, jsonify
 import ticketpy
 import json
 import geopy.distance
+from datetime import datetime
 
 
 import firebase_admin
@@ -9,7 +10,7 @@ from firebase_admin import credentials
 from firebase_admin import db
 
 # Fetch the service account key JSON file contents
-path_to_key = "your API key path"
+path_to_key = "/Users/williamlee/Desktop/CS411/Firebase/cs411-e12c0-firebase-adminsdk-z7icf-dbfcf166c2.json"
 cred = credentials.Certificate(path_to_key)
 # Initialize the app with a service account, granting admin privileges
 firebase_admin.initialize_app(cred, {
@@ -110,37 +111,56 @@ def process_form():
     # print("keys", event_list[0]["json"]["_embedded"]["venues"][0]["location"])
     
     
+    # print("event_list", event_list, len(event_list)) 
     
     events_data = []
     for i in range(len(event_list)):
         coords_1 = (latitude, longitude)
         coords_2 = (float(event_list[i]["json"]["_embedded"]["venues"][0]["location"]["latitude"]), float(event_list[i]["json"]["_embedded"]["venues"][0]["location"]["longitude"]))
-        if float(max_price) >= float(event_list[i]["price_ranges"][0]["max"]) and float(max_distance) >= geopy.distance.geodesic(coords_1, coords_2).km:
-            events_data.append({})
-            events_data[i]["name"] = event_list[i]["name"]
-            events_data[i]["status"] = event_list[i]["status"]
-            events_data[i]["start_date"] = event_list[i]["local_start_date"]
-            events_data[i]["start_time"] = event_list[i]["local_start_time"]
-            events_data[i]["min_price"] = event_list[i]["price_ranges"][0]["min"]
-            events_data[i]["max_price"] = event_list[i]["price_ranges"][0]["max"]
-            events_data[i]["longitude"] = event_list[i]["json"]["_embedded"]["venues"][0]["location"]["longitude"]
-            events_data[i]["latitude"] = event_list[i]["json"]["_embedded"]["venues"][0]["location"]["latitude"]
-        
+        if "price_ranges" not in event_list[i].keys() or event_list[i]["price_ranges"] == []:
+            continue
+        else:
+            if float(max_price) >= float(event_list[i]["price_ranges"][0]["max"]) and float(max_distance) >= float(geopy.distance.geodesic(coords_1, coords_2).km):
+                data = {}
+                data["name"] = event_list[i]["name"]
+                data["status"] = event_list[i]["status"]
+                data["start_date"] = event_list[i]["local_start_date"]
+                data["start_time"] = event_list[i]["local_start_time"]
+                data["min_price"] = event_list[i]["price_ranges"][0]["min"]
+                data["max_price"] = event_list[i]["price_ranges"][0]["max"]
+                data["longitude"] = event_list[i]["json"]["_embedded"]["venues"][0]["location"]["longitude"]
+                data["latitude"] = event_list[i]["json"]["_embedded"]["venues"][0]["location"]["latitude"]
+                events_data.append(data)
         
     print(events_data)
     print("email", email)
     print("latitude2", latitude)
     print("longitude2", longitude)
     
-    history = {}
-    history[str(name)]=events_data
     
-    print("history", history)
+    now = datetime.now()
 
+    current_time = now.strftime("%Y-%m-%d_%H-%M-%S")
 
     #push and get
-    ref = db.reference("/")
-    ref.set({"history":history})
+    ref = db.reference("/history")
+    
+    if str(name) in ref.get().keys():
+        history = {}
+        history[current_time]=events_data
+        ref = db.reference("/history/"+str(name))
+        ref.update(history)
+    
+    else:
+        history = {}
+        history[str(name)]={}
+        history[str(name)][current_time] = events_data
+        ref = db.reference("/history")
+        
+        print("keys", str(name), current_time)
+        
+        ref.update(history)
+
 
     return render_template('index.html', data=events_data)
 

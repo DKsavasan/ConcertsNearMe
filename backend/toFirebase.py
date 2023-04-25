@@ -1,6 +1,11 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+from datetime import datetime
+
+now = datetime.now()
+
+current_time = now.strftime("%Y-%m-%d_%H-%M-%S")
 
 # Fetch the service account key JSON file contents
 path_to_key = "/Users/williamlee/Desktop/CS411/Firebase/cs411-e12c0-firebase-adminsdk-z7icf-dbfcf166c2.json"
@@ -11,13 +16,20 @@ firebase_admin.initialize_app(cred, {
 })
 
 
-#test cases
-food = {}
-food["burger"]=["100g", "5-star"]
-
-
+ref = db.reference("/history")
+name = "will"
+events_data = [1, 2]
 #push and get
-ref = db.reference("/")
-ref.set({"food":food})
-print(ref.get("food"))
+if str(name) in ref.get().keys():
+        history = {}
+        history[current_time]=events_data
+        ref = db.reference("/history/"+str(name))
+        ref.update(history)
+    
+else:
+    history = {}
+    history[str(name)]={}
+    history[str(name)][current_time] = events_data
+    ref = db.reference("/history")
+    ref.update(history)
 
