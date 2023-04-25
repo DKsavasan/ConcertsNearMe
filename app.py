@@ -3,8 +3,6 @@ import ticketpy
 import json
 import geopy.distance
 from datetime import datetime
-
-
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
@@ -25,6 +23,7 @@ tm_client = ticketpy.ApiClient('1m3jpoAZ65vufnoIEnQ47V5DjEoUGggG')
 
 # This tells Flask to serve the static files from the 'static' folder
 app.static_folder = 'static'
+
 
 @app.route('/')
 def auth():
@@ -69,6 +68,15 @@ def receive_location_data():
         'status': 'location success'
     }
     return jsonify(response)
+
+@app.route('/history')
+def history():
+    # Get the data from Firebase Realtime Database
+    history_data = db.reference("history/"+name).get()
+    print("history_data", history_data)
+
+    # Render the history page with the data
+    return render_template('history.html', history=history_data)
 
 
 @app.route('/process-form', methods=['POST'])
@@ -169,4 +177,5 @@ def process_form():
 if __name__ == '__main__':
     print("Starting Flask server...")
     app.run(debug=True)
+
 

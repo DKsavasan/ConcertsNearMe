@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>History</title>
+</head>
+<body>
+	<h1>History</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Status</th>
+				<th>Start Date</th>
+				<th>Start Time</th>
+				<th>Min Price</th>
+				<th>Max Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for date, events in history.items() %}
+				{% for event in events %}
+					<tr>
+						<td>{{ event.name }}</td>
+						<td>{{ event.status }}</td>
+						<td>{{ event.start_date }}</td>
+						<td>{{ event.start_time }}</td>
+						<td>{{ event.min_price }}</td>
+						<td>{{ event.max_price }}</td>
+					</tr>
+				{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>

@@ -11,6 +11,7 @@
   <div>
     <h1 class="status"></h1>
     <button class="location-button">Get My Location</button>   
+    <button class="history-button" onclick="location.href='/history'">History</button>
   </div>
   <div class="container">
     <form class="form" method="POST" action="/process-form" onsubmit="console.log('Form submitted!')">
@@ -50,6 +51,7 @@
   </table>
 
   <script src="{{ url_for('static', filename='index.js') }}"></script>
+  <script src="{{ url_for('static', filename='history.js') }}"></script>
 
 </body>
 </html>
