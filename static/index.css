@@ -2,17 +2,31 @@ body {
     background-color: orange;
 }
 
-.location-button {
-    width: 150px;
-    height: 50px;
-    border-radius: 5px;
-    border: none;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: red;
+.location-button, .history-button {
+  position: absolute;
+  top: 10px;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  transition: background-color 0.3s;
 }
+
+.location-button {
+  left: 10px;
+}
+
+.history-button {
+  left: calc(30px + 30px + 2 * 40px + 30px); /* Added 10px of space between buttons */
+}
+
+.location-button:hover, .history-button:hover {
+  background-color: #2980b9;
+}
+
 
 .container {
     display: flex;
