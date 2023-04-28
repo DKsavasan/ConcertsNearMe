@@ -18,7 +18,7 @@ Frontend: HTML, CSS, JavaScript
 Backend: Python, Flask
 Database: Firebase
 
-## How to run the web: 
+## How to activate the flaskweb: 
 1. Open terminal
 2. type `cd <path/to/this/project>`
 3. type `python app.py` or `python3 app.py`
