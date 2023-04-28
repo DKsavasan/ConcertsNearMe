@@ -26,7 +26,7 @@ Database: Firebase
 
 ## How to play with the Web:
 1. On the login page, users can click on login button, and sign in with their Google account (We use Firebase Google OAuth)
-<img src="https://github.com/DKsavasan/Cs411project/blob/master/docs/gif/login.gif" width="450"/><br />
+<img src="https://github.com/DKsavasan/Cs411project/blob/master/docs/gif/login.gif" width="650"/><br />
 3. On the index page, users should first click on the "get my location", and the latitiude and longtitude of the users' current location will be displayed on the page.
 4. Users need to enter the genre, date ranges, maximum price, maximum distance, and the state code, then click on submit button.
 5. Scroll dowm, a list of events will be displayed, which fits users preferences.
