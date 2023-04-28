@@ -1,5 +1,4 @@
 # Cs411project
-Team Project 
 
 ## Project Description:
 Event Finder: We will user users' current location and preferences to find the events fits users input
