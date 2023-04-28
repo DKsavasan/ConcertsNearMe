@@ -26,9 +26,10 @@ Database: Firebase
 
 ## How to play with the Web:
 1. On the login page, users can click on login button, and sign in with their Google account (We use Firebase Google OAuth)
-2. On the index page, users should first click on the "get my location", and the latitiude and longtitude of the users' current location will be displayed on the page.
-3. Users need to enter the genre, date ranges, maximum price, maximum distance, and the state code, then click on submit button.
-4. Scroll dowm, a list of events will be displayed, which fits users preferences.
-5. If users click on the history button, they will be navigated to another page, where users' past search experiences will be displayed.
-6. When users click on the back button on the history page, they will be navigated back to index page.
+<img src="https://github.com/DKsavasan/Cs411project/blob/master/docs/gif/login.gif" width="250"/><br />
+3. On the index page, users should first click on the "get my location", and the latitiude and longtitude of the users' current location will be displayed on the page.
+4. Users need to enter the genre, date ranges, maximum price, maximum distance, and the state code, then click on submit button.
+5. Scroll dowm, a list of events will be displayed, which fits users preferences.
+6. If users click on the history button, they will be navigated to another page, where users' past search experiences will be displayed.
+7. When users click on the back button on the history page, they will be navigated back to index page.
 
