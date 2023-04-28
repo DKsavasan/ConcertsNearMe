@@ -32,11 +32,13 @@ const findMyState = () => {
                     })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+                        const latitudeSpan = document.querySelector('#latitude');
+                        const longitudeSpan = document.querySelector('#longitude');
+                        latitudeSpan.textContent = `Latitude: ${latitude}`;
+                        longitudeSpan.textContent = `Longitude: ${longitude}`;
                     });
             });
     }
-
 
     const error = () => {
         status.textContent = "Unable";
