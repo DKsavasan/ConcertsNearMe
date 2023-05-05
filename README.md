@@ -8,6 +8,9 @@ Event Finder: We will user users' current location and preferences to find the e
 * Thomas Lee
 * Doruk Savasan
 
+## Demo Video: 
+* If you want to take a look at the demo video, please play or download Final Demo Video.mp4
+
 ## API:
 * Geolocation API: We will use this API to get the distance from users' location to the event
 * Ticketmaster API: We will get the genre, time, locations of different events using this API
