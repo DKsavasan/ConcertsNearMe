@@ -33,6 +33,7 @@ def auth():
 def index():
     return render_template('index.html')
 
+# initialize a global variable for email and name
 email = ""
 name = ""
 
@@ -40,14 +41,16 @@ name = ""
 def receive_email():
     global email
     global name
+    
+    # Assgin the info to the global variables of name and email
     email = request.json['email']
     name = request.json['name']
-    # Do something with the email
-    # print("request.json", request.json)
+
     print("email", email)
     print("Name:", name)
     return 'Email received!'
 
+# initialize a global variable for longtitude and latitude
 longitude = 0
 latitude = 0
 
@@ -56,6 +59,8 @@ def receive_location_data():
     global longitude
     global latitude
     data = request.get_json()
+    
+    # Assgin the info to the global variables of latitude and longitude
     latitude = data.get('latitude')
     longitude = data.get('longitude')
 
@@ -84,6 +89,8 @@ def process_form():
     global email
     global latitude
     global longitude
+    
+    # get the input from frontend
     print("Processing form...")
     genre = request.form['genre']
     print("Genre:", genre)
@@ -96,11 +103,13 @@ def process_form():
     state_code = request.form['state_code']
     print("State Code:", state_code)
     
-    # do something with the variables here, like save them to a database or process them in some way
+    
+    # process the input from the frontend
     
     start = date_range.split(" - ")[0] + "T00:00:00Z"
     finish = date_range.split(" - ")[1] + "T23:59:59Z"
     
+    # use the ticketmaster api to find the events
     pages = tm_client.events.find(
     classification_name=genre,
     state_code= state_code,
@@ -113,14 +122,9 @@ def process_form():
             event_dict = vars(event)
             event_list.append(event_dict)
             # print(event)
-            
-    # print("event_list", event_list[0])
-    # print("type", type(event_list[0]))
-    # print("keys", event_list[0]["json"]["_embedded"]["venues"][0]["location"])
+
     
-    
-    # print("event_list", event_list, len(event_list)) 
-    
+    # based on the input constraints (ptice and distance), return the valid events
     events_data = []
     for i in range(len(event_list)):
         coords_1 = (latitude, longitude)
@@ -146,13 +150,15 @@ def process_form():
     print("longitude2", longitude)
     
     
+    # get the current time
     now = datetime.now()
 
     current_time = now.strftime("%Y-%m-%d_%H-%M-%S")
 
-    #push and get
+    #push to database
     ref = db.reference("/history")
     
+    # we have to check if a user already exists in the database to prevent overwrite
     if str(name) in ref.get().keys():
         history = {}
         history[current_time]=events_data
