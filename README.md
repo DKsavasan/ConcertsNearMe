@@ -4,9 +4,9 @@
 Event Finder: We will user users' current location and preferences to find the events fits users input
 
 ## Teammates:
+* Doruk Savasan
 * Yin-Ching Lee
 * Thomas Lee
-* Doruk Savasan
 
 ## Demo Video: 
 * If you want to take a look at the demo video, please play or download Final Demo Video.mp4
